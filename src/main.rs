@@ -1,4 +1,5 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+use std::fs;
 use std::io;
 use std::process;
 
@@ -61,11 +62,33 @@ fn main() {
     }
 }
 
-fn new_task(tasks: &mut Vec<Task>) {}
+fn new_task(tasks: &mut Vec<Task>) {
+    let name: String = String::new();
+    let description: String = String::new();
+    let status: Status = Status::NotStarted;
+    tasks.push(Task {
+        name,
+        description,
+        status,
+    })
+}
+
 fn update_task(tasks: &mut Vec<Task>) {}
-fn remove_task(tasks: &mut Vec<Task>) {}
-fn print_tasks(tasks: &mut Vec<Task>) {}
-fn exit() {}
+fn remove_task(tasks: &mut Vec<Task>) {
+    clearscreen::clear().expect("Failed to clear console");
+    println!("What task would you like to remove?");
+    let mut input: String = String::new();
+    io::stdin().read_line(&mut input).expect("Invalid input!");
+    let input = input.trim();
+    if let Some(pos) = tasks.iter().position(|t| t.name == input) {
+        tasks.remove(pos);
+        println!("Removed task {}", input);
+    } else {
+        println!("Invalid task");
+    }
+}
+fn print_tasks(tasks: &mut Vec<Task>) {
+}
 
 fn example() {
     let example_task = Task {
