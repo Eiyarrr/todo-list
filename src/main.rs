@@ -89,18 +89,3 @@ fn remove_task(tasks: &mut Vec<Task>) {
 }
 fn print_tasks(tasks: &mut Vec<Task>) {
 }
-
-fn example() {
-    let example_task = Task {
-        name: String::from("name"),
-        description: String::from("description"),
-        status: Status::NotStarted,
-    };
-
-    println!(
-        "{}, {}, {}",
-        example_task.name,
-        example_task.description,
-        example_task.get_status()
-    );
-}
